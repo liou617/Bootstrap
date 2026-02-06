@@ -119,33 +119,109 @@
         .h200px {
             height: 200px;
         }
+
+        .w300px {
+            width: 300px;
+        }
+
+        .border-fb2 {
+            border-color: var(--fb-color-2) !important
+        }
+
+        .search-bar {
+            transition: width 0.2s;
+        }
+
+        .active {
+            width: 500px;
+
+        }
     </style>
 
     <title>facebook 切版</title>
 </head>
 
 <body>
+
     <!-- 語意標籤：nav最上層標題 -->
     <nav class="bg-fb1 h50px">
         <!-- 置中要在相同高度中校正 -->
         <div class="container h-100 d-flex align-items-center">
             <i class="fa-brands fa-square-facebook fs-1 text-white"></i>
-            <div>123</div>
+            <div class="input-group input-group-sm w300px search-bar">
+                <span class="input-group-text">搜尋</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+            </div>
+            <!-- me 將右邊空間撐滿， -->
+            <div class="head h30px w30px bg-fb4 rounded-circle ms-auto me-5"></div>
+            <div class="text-light px-3 ms-5 border-start border-fb2">首頁</div>
+            <div class="text-light px-3 border-start border-end border-fb2">建立</div>
+            <i class="fa-solid fa-user-group fs-4 mx-3"></i>
+            <i class="fa-solid fa-comment fs-4 me-3"></i>
+            <i class="fa-solid fa-bell fs-4 me-3"></i>
+            <i class="fa-solid fa-circle-question fs-4 me-3"></i>
+            <i class="fa-sharp fa-solid fa-sort-down me-3"></i>
+
         </div>
     </nav>
-    <main>
+    <main class="placeholder-glow">
         <div class="container">
-            <div class="row">
-                <div class="col">1</div>
-                <div class="col">2</div>
-                <div class="col">3</div>
+            <div class="row gx-2">
+                <div class="col-2 mt-2">
+                    <div class="hstack gap-1 py-3">
+                        <div class="head h30px w30px bg-secondary rounded-circle"></div>
+                        <span class="placeholder col-7"></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mb-1">
+                        <div class="icon h30px w30px bg-secondary rounded-2"></div>
+                        <span class="placeholder col-4"></span>
+                        <i class="fa-solid fa-ellipsis ms-auto"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mb-1">
+                        <div class="icon h30px w30px bg-secondary rounded-2"></div>
+                        <span class="placeholder col-6"></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mb-1">
+                        <div class="icon h30px w30px bg-secondary rounded-2"></div>
+                        <span class="placeholder col-6"></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mb-1">
+                        <div class="icon h30px w30px bg-secondary rounded-2"></div>
+                        <span class="placeholder col-4"></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mb-1">
+                        <div class="icon h30px w30px bg-secondary rounded-2"></div>
+                        <span class="placeholder col-6"></span>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="bg-info">2</div>
+                </div>
+                <div class="col-3">
+                    <div class="bg-info">3</div>
+                </div>
             </div>
+
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script>
+        const searchBar = document.querySelector(".search-bar");
+
+        searchBar.addEventListener("focusin", (e) => {
+            e.currentTarget.classList.add("active");
+        });
+        searchBar.addEventListener("focusout", (e) => {
+            e.currentTarget.classList.remove("active");
+        });
+    </script>
 </body>
 
 </html>
