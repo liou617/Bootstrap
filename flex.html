@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .container {
+            /* 橫向排列 */
+            display: flex;
+            /* 間距 */
+            gap: 10px;
+            align-items: flex-end;
+            width: 600px;
+            aspect-ratio: 16/9;
+            background-color: #6cd2eb;
+            box-sizing: border-box;
+            /* 四周都變寬 */
+            padding: 10px;
+            padding-bottom: 0;
+
+            .col {
+                width: 100px;
+                height: 90px;
+                background-color: #2373ce;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 60px;
+
+                &:nth-child(2) {
+                    height: 240px;
+                    margin-left: auto;
+                }
+
+                &:nth-child(3) {
+                    height: 120px;
+                }
+            }
+
+        }
+    </style>
+
+    <title>flex長條圖</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col">1</div>
+        <div class="col">2</div>
+        <div class="col">3</div>
+    </div>
+</body>
+
+</html>
