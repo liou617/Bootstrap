@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        .bg-pink {
+            --bs-btn-bg: #f864bf;
+            --bs-btn-color: #fff;
+            --bs-btn-hover-bg: #e22f92;
+            --bs-btn-hover-color: #fff;
+        }
+
+        .h700px {
+            height: 700px;
+        }
+
+        .h100px {
+            height: 100px;
+        }
+
+        .h300px {
+            height: 300px;
+        }
+
+        .w100px {
+            width: 100px;
+        }
+
+        input[type=search]::placeholder {
+            color: #565656 !important;
+        }
+
+
+        .top60px {
+            top: 60px;
+        }
+
+        aside .container .nav .nav-link.active {
+            border-bottom: 3px solid #068de8;
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        .w30px {
+            width: 30px;
+        }
+
+        .h300px {
+            height: 30px;
+        }
+
+        .b5px {
+            bottom: 5px;
+
+        }
+    </style>
+    <title>Flickr 頁面模仿</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark text-light sticky-top" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand text-light" href="#">Flickr</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            發掘
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">最新內容</a></li>
+                            <li><a class="dropdown-item" href="#">活動</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">世界地圖</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">印刷品</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">最新內容</a></li>
+                            <li><a class="dropdown-item" href="#">最新內容</a></li>
+                            <li><a class="dropdown-item" href="#">最新內容</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex position-relative align-items-center me-2" role="search">
+                    <input class="form-control form-control-sm text-dark bg-light rounded-pill ps-4" type="search"
+                        placeholder="相片﹑人物或群組" aria-label="Search" />
+                    <i class="fa-solid fa-magnifying-glass position-absolute text-dark"></i>
+                </form>
+                <button class="btn btn-sm me-1" type="button">
+                    <i class="fa-solid fa-cloud-arrow-up fs-4"></i>
+                </button>
+                <button class="btn btn-sm me-2" type="button">登入</button>
+                <button class="btn btn-danger bg-pink btn-sm" type="button">註冊</button>
+            </div>
+        </div>
+    </nav>
+    <header class="h700px bg-dark">
+        <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
+            <div class="carousel-indicators b5px">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" aria-current="true"
+                    class="position-relative active" aria-label="Slide 1">
+                    <img class="w30px h30px position-absolute top-0 start-0"
+                        src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg" alt="">
+                </button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"
+                    class="position-relative">
+                    <img class="w30px h30px position-absolute top-0 start-0"
+                        src="https://images.pexels.com/photos/14534146/pexels-photo-14534146.jpeg" alt="">
+                </button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"
+                    class="position-relative">
+                    <img class="w30px h30px position-absolute top-0 start-0"
+                        src="https://images.pexels.com/photos/29161268/pexels-photo-29161268.jpeg" alt="">
+                </button>
+            </div>
+            <div class="carousel-inner h-100">
+                <div class="carousel-item h-100 active" data-bs-interal="1000">
+                    <!-- active 為必要素，預設第一張 -->
+                    <img src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg"
+                        class="d-block w-100 h-100 object-fit-contain " alt="...">
+                </div>
+                <div class="carousel-item h-100 ">
+                    <img src="https://images.pexels.com/photos/14534146/pexels-photo-14534146.jpeg"
+                        class="d-block w-100 h-100 object-fit-contain " alt="...">
+                </div>
+                <div class="carousel-item h-100 ">
+                    <img src="https://images.pexels.com/photos/29161268/pexels-photo-29161268.jpeg"
+                        class="d-block w-100 h-100 object-fit-contain " alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+
+    <main>
+
+    </main>
+
+    <footer class="bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <div class="nav justify-content-between">
+                <a class="nav-link text-white" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+            </div>
+            <div class="nav border-top">
+                <a class="nav-link text-light" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link ms-auto" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
+                lists, etc.
+            </div>
+            <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
