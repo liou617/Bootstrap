@@ -6,55 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>讀取政府公開資料顯示</title>
+    <style>
+        .w50px {
+            width: 50px;
+        }
+
+        .w80px {
+            width: 80px;
+        }
+
+        .w100px {
+            width: 100px;
+        }
+    </style>
+    <title>處理多筆資料分頁顯示</title>
 </head>
 
 <body>
+    <div class="container-md">
+        <div aria-label="Page navigation example">
+            <ul class="pagination pagination-sm justify-content-end mt-3">
+                <li class="page-item"><a class="page-link page-pre" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link page-next" href="#">Next</a></li>
+            </ul>
+        </div>
+        <div class="unit d-flex bg-dark text-light">
+            <div class="cold w50px">sn</div>
+            <div class="cold w50px">年度</div>
+            <div class="cold w80px">作物代碼</div>
+            <div class="cold flex-fill">稻穀總產量</div>
+            <div class="cold w100px">縣市</div>
+            <div class="cold w100px">鄉鎮</div>
+        </div>
+        <div class="list"></div>
 
-    <div class="container">
+        <!-- <div class="unit d-flex">
+            <div class="cold w50px">sn</div>
+            <div class="cold w50px">年度</div>
+            <div class="cold w80px">作物代碼</div>
+            <div class="cold flex-fill">稻穀總產量</div>
+            <div class="cold w100px">縣市</div>
+            <div class="cold w100px">鄉鎮</div>
+        </div> -->
 
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script>
+        const container = document.querySelector(".list");
+        const pagePre = document.querySelector(".page-pre");
+        const pageNext = document.querySelector(".page-next");
+        const myModalElm = document.querySelector("#exampleModal");
+        const myModalBody = document.querySelector("#exampleModal .modal-body");
+        const myModal = new bootstrap.Modal("#exampleModal", {});
+
         const dataURL = "./data.json";
-        let data;
+        let data, totalPage;
+        const prePage = 50;
 
-
+        // location.href 完整網址
+        // location.search 查詢參數
+        const params = new URLSearchParams(location.search);
+        let page = parseInt(params.get("page")) || 1;
 
         getData();
 
-        // await 等待回傳結果是promise的格式 
-        // 只能放在 async 宣告的function中，或是再modal型式的script 標籤下
+        pagePre.addEventListener("click", (e) => {
+            e.preventDefault();
+            page--;
+            location.href = `data.html?page=${page}`;
+        });
+
+        pageNext.addEventListener("click", (e) => {
+            e.preventDefault();
+            page++;
+            location.href = `data.html?page=${page}`;
+        });
+
+        container.addEventListener("click", (evn) => {
+            if (!evn.target.parentElement.classList.contains("unit")) return;
+            const id = parseInt(evn.target.parentElement.dataset.id);
+            showModal(JSON.stringify(data[id]));
+
+
+        })
+
+        // await 會等待類別是 Promise 的回傳結果
+        // await 只能夠用在 async 宣告的 function 裡
+        // 或是 module 型式的 script 標籤下
         async function getData() {
-
-            // 抓資料
             try {
-                const respone = await fetch(dataURL);
-                if (respone.result >= 300) {
+                const response = await fetch(dataURL);
+                if (response.status >= 300) {
                     // return console.log("有錯誤");
-                    throw new Error(respone.statusText);
-
+                    throw new Error(response.statusText);
                 }
-
-                const result = await respone.json();
+                const result = await response.json();
+                totalPage = Math.ceil(result.length / prePage);
+                console.log(totalPage);
                 data = structuredClone(result);
-
+                init()
             } catch (err) {
                 console.log(err);
-
             }
-
         }
-        // 處理資料
+
         function init() {
             console.log("開始處理視覺");
-            console.log(data);
-
+            const startIndex = prePage * (page - 1);
+            const endIndex = prePage * page;
+            data
+                .slice(startIndex, endIndex)
+                .forEach((val, i) => {
+                    const node = document.createElement("div");
+                    node.innerHTML = `<div class="unit d-flex" data-id="${i + prePage * (page - 1)}">
+                                        <div class="cold w50px">${i + 1 + prePage * (page - 1)}</div>
+                                        <div class="cold w50px">${val["年度"]}</div>
+                                        <div class="cold w80px">${val["作物代碼"]}</div>
+                                        <div class="cold flex-fill">${val["稻穀總產量"]}</div>
+                                        <div class="cold w100px">${val["縣市"]}</div>
+                                        <div class="cold w100px">${val["鄉鎮"]}</div>
+                                    </div>`;
+                    container.append(node.children[0]);
+                });
+            if (page == 1) {
+                pagePre.parentElement.classList.add("disabled");
+            }
+            if (page == totalPage) {
+                pageNext.parentElement.classList.add("disabled");
+            }
         }
-
+        function showModal(content) {
+            myModalBody.innerHTML = content;
+            myModal.show();
+        }
     </script>
 </body>
 
