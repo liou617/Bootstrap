@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>popovers</title>
+</head>
+
+<body>
+    <div class="container">
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title"
+            data-bs-content="And here’s some amazing content. It’s very engaging. Right?">Click to toggle
+            popover</button>
+        <div>
+            或是破解<span data-bs-toggle="popover" data-bs-title="隨便的標題" data-bs-content="內文內文內文內文內文內文內文內文內文內文內文內文內文內文"
+                class="text-danger">尷尬</span>否則電力認證總是時候選單下降辦公室病毒，的說辛苦好評小學根本知道，聰明就是機票大眾不多自身附件西安門口，一次都是一句話主板再說，你自己好看提交我去特價財政會有或許後面健康團結，股份有限公司落實批評指標飛機我去，分為一下子圖文道理這些市委對他，只要現象對於擁有人士授權方式程式植物新增對了，技巧沒人說是體系商機所屬感受經濟發展，抱著狀態是因為改善點點任務自信，委員會歌手銷售屏東就算，推坑。
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script>
+        const popovers = document.querySelectorAll("[data-bs-toggle=popover]");
+        popovers.forEach(elm => new bootstrap.Popover(elm));
+
+    </script>
+</body>
+
+</html>
