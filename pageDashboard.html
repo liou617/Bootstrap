@@ -185,6 +185,7 @@
 
         function fetchData(event) {
             event.preventDefault();
+            loading()
             const filePath = event.target.dataset.file;
             fetch(filePath, {
                 method: 'get'
@@ -198,6 +199,7 @@
                 throw new Error("錯誤產生 " + response.statusText);
             }).then((data) => {
                 // 處理後續內容
+                return;
                 console.log(data);
                 displayArea.innerHTML = data;
                 document.querySelector(".fetch-user.active").classList.remove("active");
@@ -207,6 +209,12 @@
                 console.log(error);
                 // 補獲錯誤
             });
+        }
+
+        function loading() {
+            displayArea.innerHTML`<div class="spinner-border text-info" role="status">
+                                 <span class="visually-hidden">Loading...</span>
+                                </div>`
         }
 
     </script>
